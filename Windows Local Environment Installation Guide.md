@@ -229,7 +229,7 @@ This documentation was created in Fall 2025 at the time of CoRA version 2.5. Her
 		sudo apt install git
 
 ### Clone CoRA Project from cora25 GitHub Repository
-*Note: This step required a developer access token (https://github.com/settings/tokens)*
+*Note: This step requires a developer access token (https://github.com/settings/tokens)*
 
 *Note: All of the following commands are run in the Unbuntu terminal*
 
@@ -244,6 +244,45 @@ This documentation was created in Fall 2025 at the time of CoRA version 2.5. Her
 *Note: The github password will be the developer access token, NOT your github password*
 
 3. The project will download and it may take a while.
+
+*Note: This step requires an SSH key (https://github.com/settings/keys)*
+
+1. Initialize the git directory by running the following command in your preferred directory:
+
+</br>
+
+		git init
+
+2. Add the remote origin of the repository to your local machine by running the following command:
+
+</br>
+
+		git remote add origin https://github.com/SachinPawaskarUNO/cora25.git
+
+*Note: When generating the key pair, leave the path blank as it will default to ~/.ssh/*
+3. Generate the SSH key pair by running the following command:
+
+</br>
+
+		ssh-keygen -t rsa -b 4096 -C "yourgithubemailaddress"
+
+4. Login to GitHub and go to https://github.com/settings/keys
+
+5. Select the option to create a New SSH Key
+
+6. Run the following command to grab the contents of your public key, you will paste this into the key field in GitHub:
+
+</br>
+
+		cat ~/.ssh/id_rsa.pub
+
+7. Copy the key contents and paste it into the key field within GitHub and set the key type to authentication key
+
+8. Now you should be able to clone the git repository using your SSH key pair by running the following command:
+
+</br>
+
+		git@github.com:SachinPawaskarUNO/cora25.git
 
 ### Download and Install Composer
 
