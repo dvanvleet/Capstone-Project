@@ -17,10 +17,12 @@
 - [Download and Install Ubuntu Desktop into VirtualBox](#download-and-install-ubuntud-desktop-into-virtualbox)
 - [Download and Install WSL (Windows Subsystem for Linux)](#download-and-install-wsl)
 - [Download and Install your IDE of Choice](#download-and-install-vagrant)
+- [Download and Install NVM](#download-and-install-nvm-and-node)
 - [Download and Install Composer](#download-and-install-composer)
 - [Download and Install Git](#download-and-install-git)
 - [Download and Install PHP](#download-and-install-php)
 - [Download and Install Docker](#download-and-install-docker)
+- [Download and Install Docker Desktop](#download-and-install-docker-desktop)
 - [Download and Install Docker Compose](#download-and-install-docker-compose)
 - [Clone CoRA Project from cora25 GitHub Repository](#clone-cora-project-from-cora25-gitHub-repository)
 - [Create the env File](#create-the-env-file)
@@ -130,7 +132,11 @@ This documentation was created in Fall 2025 at the time of CoRA version 2.5. Her
 
 1. Launch a Terminal Window
 
-2. Run the command: wsl --install -d Ubuntu
+2. Run the following command: wsl --install -d Ubuntu
+
+</br>
+
+		wsl --install -d Ubuntu
 
 3. Restart your machine
 
@@ -141,16 +147,19 @@ This documentation was created in Fall 2025 at the time of CoRA version 2.5. Her
 2. Find the latest LTS version for Ubuntu and install it
 
 3. Open Terminal and run the following commands:
-		a. dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-		b. dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 
-4. Restart your machine
+</br>
 
-5. Open a terminal window and run wsl --update and ensure that it is at the latest version
+	dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+   	dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 
-6. Close the terminal and relaunch
+5. Restart your machine
 
-7. Upgrade Ubuntu to the most recent update
+6. Open a terminal window and run wsl --update and ensure that it is at the latest version
+
+7. Close the terminal and relaunch
+
+8. Upgrade Ubuntu to the most recent update
 	- Open terminal
 
 </br>
@@ -178,6 +187,36 @@ This documentation was created in Fall 2025 at the time of CoRA version 2.5. Her
 
 2. Download and install your IDE of choice to Ubuntu
 
+### Download and Install NVM and Node
+
+*Note: this will be utilized to install node*
+
+1. Run the following command to install NVM:
+
+</br>
+		
+		curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+
+2. Close your terminal and open a new one
+
+3. Check your NVM installation by running the following command:
+
+</br>
+
+	nvm -v
+
+4. Now run the following command to install the long term support version of NVM
+
+</br>
+
+	nvm install --lts
+
+5. Run the following command to install node:
+
+</br>
+
+	nvm install node
+
 ### Download and Install Composer
 
 *Note: Please refer to the following link for information on installing and using Composer in Ubuntu 20.04: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-ubuntu-20-04*
@@ -203,6 +242,19 @@ This documentation was created in Fall 2025 at the time of CoRA version 2.5. Her
 </br>
 
 		composer --version
+
+*Note: During this step, you should be within the cora25 directory. Within this directory lies the composer.json file that will be required when running the command provided*
+4. Change directory into the cora25 directory that has been cloned and run the following command to install the required dependencies:
+
+</br>
+
+		composer update
+
+5. Run the following command within the same directory:
+
+</br>
+
+		composer install
 
 ### Download and Install Git
 *Note: Git is Required for version control in the CoRA project.*
@@ -236,6 +288,20 @@ This documentation was created in Fall 2025 at the time of CoRA version 2.5. Her
 		sudo apt-get upgrade 
 		sudo apt install php8.0 php8.0-cli  
 		sudo apt install php8.0-mbstring php8.0-dom php8.0-zip php8.0-curl php8.0-xml php8.0-gd
+
+3. OPTION 3: To install PHP 8.3
+
+</br>
+
+		sudo apt install php8.3
+  		sudo apt update && sudo apt install php8.3-pgsql php8.3-zip php8.3-dom php8.3-curl php8.3-xml php8.3-mbstring php8.3-gd php8.3-bcmath
+
+4. Generate the PHP artisan key by running the following command within the cora25 directory:
+
+</br>
+
+		php artisan --version
+  		php artisan key:generate
 
 ### Download and Install Docker
 *Note: All of the following commands are run in the Unbuntu terminal*
@@ -275,6 +341,21 @@ This documentation was created in Fall 2025 at the time of CoRA version 2.5. Her
 </br>
 
 		docker --version
+
+### Download and Install Docker Desktop
+*Note: This will walk you through the steps to install the desktop version of Docker*
+
+1. Download Docker Desktop from the official Docker website at: https://www.docker.com/products/docker-desktop/
+
+2. During the installation, ensure that WSL 2 is enabled
+
+3. To complete the installation, restart your machine
+
+4. Open a terminal and run the following command to ensure that Docker has the appropriate permissions:
+
+</br>
+
+		sudo usermod -aG docker $USER
 
 ### Download and Install Docker Compose
 *Note: All of the following commands are run in the Unbuntu terminal*
