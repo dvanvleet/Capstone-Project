@@ -128,7 +128,7 @@ This documentation was created in Fall 2025 at the time of CoRA version 2.5. Her
 		sudo add-apt-repository multiverse
 
 ### Download and Install WSL
-*Note: You will be installing WSL onto your local machine within a Windows terminal*
+*Note: You will be installing WSL onto your local machine within a Windows terminal. If you are using VSCode, ensure that you install the WSL extension*
 
 1. Launch a Terminal Window
 
@@ -217,6 +217,34 @@ This documentation was created in Fall 2025 at the time of CoRA version 2.5. Her
 
 	nvm install node
 
+### Download and Install Git
+*Note: Git is Required for version control in the CoRA project.*
+
+*Note: All of the following commands are run in the Unbuntu terminal*
+
+1. Install Git
+
+</br>
+
+		sudo apt install git
+
+### Clone CoRA Project from cora25 GitHub Repository
+*Note: This step required a developer access token (https://github.com/settings/tokens)*
+
+*Note: All of the following commands are run in the Unbuntu terminal*
+
+1. Clone the project
+
+</br>
+
+		git clone https://github.com/SachinPawaskarUNO/cora25.git
+
+2. You may be prompted to log into your GitHub account, proceed with logging in.
+
+*Note: The github password will be the developer access token, NOT your github password*
+
+3. The project will download and it may take a while.
+
 ### Download and Install Composer
 
 *Note: Please refer to the following link for information on installing and using Composer in Ubuntu 20.04: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-composer-on-ubuntu-20-04*
@@ -255,17 +283,6 @@ This documentation was created in Fall 2025 at the time of CoRA version 2.5. Her
 </br>
 
 		composer install
-
-### Download and Install Git
-*Note: Git is Required for version control in the CoRA project.*
-
-*Note: All of the following commands are run in the Unbuntu terminal*
-
-1. Install Git
-
-</br>
-
-		sudo apt install git
 
 ### Download and Install PHP
 *Note: PHP 8.0 or PHP 7.4 are the required versions for the project*
@@ -371,23 +388,6 @@ This documentation was created in Fall 2025 at the time of CoRA version 2.5. Her
 </br>
 
 		docker-compose --version
-
-### Clone CoRA Project from cora25 GitHub Repository
-*Note: This step required a developer access token (https://github.com/settings/tokens)*
-
-*Note: All of the following commands are run in the Unbuntu terminal*
-
-1. Clone the project
-
-</br>
-
-		git clone https://github.com/SachinPawaskarUNO/cora25.git
-
-2. You may be prompted to log into your GitHub account, proceed with logging in.
-
-*Note: The github password will be the developer access token, NOT your github password*
-
-3. The project will download and it may take a while.
 
 ### Create the env File
 
