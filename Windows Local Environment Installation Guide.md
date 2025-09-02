@@ -28,6 +28,7 @@
 - [Create the env File](#create-the-env-file)
 - [Install the Laravel Sail components required to start the container using Composer](#install-the-laravel-sail-components-required-to-start-the-container-using-composer)
 - [Accessing CORA Development Environment](#accessing-cora-development-environment)
+- [Accessing CORA Web Interface](#accessing-cora-web-interface)
 
 ## Purpose
 The purpose of this document is to describe the architecture, design, technical dependencies, key configurations, specifications used to develop the existing Commingled Remains Analytics (CoRA) web application for Defense POW/MIA Accounting Agency (DPAA). The document will provide a clear understanding of how to set up the system locally, configurations for the testing environment, and any potential issues that may arise and how to resolve them.
@@ -432,9 +433,31 @@ This documentation was created in Fall 2025 at the time of CoRA version 2.5. Her
 
 1. You will not be able to open the development environment until you receive the database credentials and instructions on what to enter in the .env file.
 
-2. Once you receive the information needed to put in your .env file, in the file explorer, navigate to */cora25/.env.example*. Update the file as directed and save the file as ".env"
+2. Once you receive the information needed to put in your .env file, in the file explorer, navigate to */cora25/.env.example*. Update the file as directed and save the file as ".env" by running the following command:
 
-3. Change REDIS_HOST value from 127.0.0.1 to redis.
+</br>
+
+		cp .env.example .env
+
+4. Change REDIS_HOST value from 127.0.0.1 to redis.
+
+5. Comment out the original connection variables including the following:
+
+   - DB_CONNECTION
+   - DB_HOST
+   - DB_PORT
+   - DB_DATABASE
+   - DB_USERNAME
+   - DB_PASSWORD
+  
+6. Add new variables replacing the ones that have been commented out:
+
+   - DB_CONNECTION=pgsql
+   - DB_HOST=localhost
+   - DB_PORT=5532
+   - DB_DATABASE=cora
+   - DB_USERNAME=postgres
+   - DB_PASSWORD=password
 
 ### Install the Laravel Sail components required to start the container using Composer
 
@@ -460,7 +483,7 @@ This documentation was created in Fall 2025 at the time of CoRA version 2.5. Her
 
 </br>
 
-		./vendor/bin/sail up
+		./vendor/bin/sail up -d
 
 *Note: This step may take some time.*
 
@@ -479,5 +502,38 @@ This documentation was created in Fall 2025 at the time of CoRA version 2.5. Her
 ```
 If you want to monitor the file import jobs, Please open a browser and navigate to `localhost/horizon`.
 4. You will now be able to open up a browser and navigate to local host.
+
+### Seeding CORA Test Users
+*Note: This can be completed by commenting out a specific section within the user.php file and replacing it with a new code block*
+
+1. Update the project function in user.php from this:
+
+</br>
+
+		public function projects() { if ($this->isOrgAdmin() || $this->isAdministrator()) { return $this->org->projects(); } else { return 			$this->belongsToMany(\App\Models\Project::class, 'project_user', 'user_id', 'project_id') ->withPivot('user_id', 'project_id', 				'default', 'created_by', 'updated_by') ->withTimestamps(); }
+
+2. To this:
+
+</br>
+
+		public function projects() { // This ensures the correct many-to-many relationship is always returned, // which has the sync() method 		the seeder needs. return $this->belongsToMany(\App\Models\Project::class, 'project_user', 'user_id', 'project_id') -						>withPivot('user_id', 'project_id', 'default', 'created_by', 'updated_by') ->withTimestamps(); }
+
+3. Within your terminal window run the following command:
+
+</br>
+
+		php artisan db:seed --class=CoraTestDataSeeder
+
+### Accessing CORA Web Interface
+
+*Note: All of the following commands are run in the Ubuntu terminal*
+
+1. Start the development server by running the following command:
+
+</br>
+
+		php artisan serve
+
+2. Access the web page by going to 127.0.0.1:8000 within your browser
 
 # Congratulations! You've successfully setup the CoRA Project Development Environment!
