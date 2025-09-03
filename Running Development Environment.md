@@ -11,7 +11,14 @@ The purpose of this document is to assist technicians in regards to running the 
 The CoRA web application, database and APIs are a community resource for inventorying assemblages of commingled human remains which are often encountered in archaeological and forensic contexts, while providing a framework of analytic methods, visualization techniques and tools to assist in the segregation and identification process. The application is an enhancement of existing CoRA web application layout, in order to bring progressive front-end design for the users. These enhancements for the application will allow users to access the website and use the full range of application features since it embraces both the desktop and mobile universes with responsiveness, flexibility, and extensibility.
 
 ## System Requirements
- 
+
+- [Operating System Requirements](#operating-system-requirements)
+- [Recommended Browsers](#recommended-browsers)
+- [Minimum System Hardware Requirements](#minimum-system-hardware-requirements)
+- [Software Requirements](#software-requirements)
+
+## Running the Development Environment
+
 - [Running the Development Environment](#running-the-development-environment)
 - [Accessing CORA Web Interface](#accessing-cora-web-interface)
 
