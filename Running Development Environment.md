@@ -1,4 +1,4 @@
-# Getting Started - Windows Local Environment Setup Guide - Fall 2025
+# Running the CORA Development Environment
 
 ## Table of contents
 - [Purpose](#purpose)
